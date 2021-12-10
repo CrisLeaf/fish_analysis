@@ -29,5 +29,3 @@ curr.execute(
 conn.commit()
 curr.close()
 conn.close()
-
-

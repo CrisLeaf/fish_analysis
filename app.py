@@ -14,10 +14,9 @@ dbname = "fishdb"
 #%%
 def get_statistics(name):
 	name = name.lower()
-	
+	# PSQL Connection
 	conn = psycopg2.connect(host=host, user=user, password=password, dbname=dbname)
 	curr = conn.cursor()
-	
 	curr.execute(
 		f"SELECT * FROM fishes WHERE name='{name}';"
 	)
@@ -37,20 +36,19 @@ def get_statistics(name):
 	production_years = [item[2] for item in items]
 	production_values = [item[4] for item in items]
 	production_state = [item[3] for item in items]
-	production_state = ["Fresco" if string == "fresh" else "Congelado" for string in production_state]
-	
+	production_state = [
+		"Fresco" if string == "fresh" else "Congelado" for string in production_state
+	]
 	curr.execute(
 		f"SELECT * FROM prices WHERE f_id={f_id};"
 	)
-	
 	items = curr.fetchall()
 	prices_years = [item[2] for item in items]
 	prices_values = [item[3] for item in items]
-	
 	conn.commit()
 	curr.close()
 	conn.close()
-	
+	# Plots
 	fig, axes = plt.subplots(nrows=3, figsize=(10, 30))
 	# disembarkation_year plot
 	sns.lineplot(disemb_years, disemb_values, ax=axes[0])
@@ -82,7 +80,7 @@ def main():
 	st.markdown(html_temp, unsafe_allow_html=True)
 	name = st.text_input("Nombre")
 	# Button
-	if st.button("Obtener Gráficos:"):
+	if st.button("Obtener Estadísticas:"):
 		try:
 			fig, prices = get_statistics(name)
 			st.pyplot(fig)
