@@ -1,4 +1,3 @@
-#%% Connect to PSQL
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -6,12 +5,13 @@ sns.set_style("darkgrid")
 import streamlit as st
 import psycopg2
 
+#%% Connect to PSQL
 host = "localhost"
 user = "postgres"
 password = "password"
 dbname = "fishdb"
 
-#%%
+#%% Back-End
 def get_statistics(name):
 	name = name.lower()
 	# PSQL Connection
@@ -69,7 +69,7 @@ def get_statistics(name):
 	
 	return fig, prices_values
 	
-#%%
+#%% Front-End
 def main():
 	# Page
 	html_temp="""
