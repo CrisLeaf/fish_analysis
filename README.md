@@ -27,7 +27,15 @@ On the terminal, run
 ```
 python pdf_converter.py
 ```
-to get the CSV files.
+to get the CSV files. Then, create a PSQL Database called `fishdb`, and run
+```
+python create_tables.py
+```
+and
+```
+python data_preparation.py
+```
+to fill the Database with the data extracted.
 
 ## Implementation
 
