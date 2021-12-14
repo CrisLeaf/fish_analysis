@@ -11,7 +11,7 @@ user = "postgres"
 password = "password"
 dbname = "fishdb"
 
-#%% Back-End
+#%%
 def get_statistics(name):
 	name = name.lower()
 	# PSQL Connection
@@ -69,7 +69,7 @@ def get_statistics(name):
 	
 	return fig, prices_values
 	
-#%% Front-End
+#%%
 def main():
 	# Page
 	html_temp="""
